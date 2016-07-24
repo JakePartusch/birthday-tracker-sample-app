@@ -1,0 +1,27 @@
+<div class="container">
+
+  <div>
+    <birthday-navbar creation-date="main.creationDate"></birthday-navbar>
+  </div>
+
+  <div class="jumbotron text-center">
+    <h1>Birthday Tracker Application</h1>
+  </div>
+  <div class="row">
+    <button class="btn btn-primary" ng-click="main.toggleSort()">
+      <div ng-if="!main.isBirthdaySort()">Sort by Total Birthdays</div>
+      <div ng-if="!main.isChronologicalSort()">Sort Chronologically</div>
+    </button>
+  </div>
+  <div class="row">
+    <div class="col-sm-4 col-md-offset-4" ng-repeat="month in main.months | orderBy: main.sortByProperty:main.reverse">
+      <div class="thumbnail">
+        <div class="caption">
+          <h1 style="text-align: center">{{ month.name }}</h1>
+          <h1 style="text-align: center">{{ month.birthdays }}</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
