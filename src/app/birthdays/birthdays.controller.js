@@ -3,11 +3,14 @@
 
   angular
     .module('birthdayTrackerSampleApp')
-    .controller('MainController', MainController);
+    .controller('BirthdaysController', BirthdaysController);
 
   /** @ngInject */
-  function MainController(birthdayTrackerService) {
+  function BirthdaysController(birthdayTrackerService) {
     var vm = this;
+
+    vm.birthdays = 'birthdays';
+    vm.order = 'order';
 
     vm.init = function() {
       vm.setChronologicalSort();
@@ -22,21 +25,21 @@
     };
 
     vm.setBirthdaySort = function() {
-      vm.sortByProperty = 'birthdays';
+      vm.sortByProperty = vm.birthdays;
       vm.reverse = true;
     };
 
     vm.setChronologicalSort = function() {
-      vm.sortByProperty = 'order';
+      vm.sortByProperty = vm.order;
       vm.reverse = false;
     };
 
     vm.isBirthdaySort = function() {
-      return vm.sortByProperty === 'birthdays'
+      return vm.sortByProperty === vm.birthdays
     };
 
     vm.isChronologicalSort = function() {
-      return vm.sortByProperty === 'order'
+      return vm.sortByProperty === vm.order;
     };
 
     vm.months = birthdayTrackerService.getMonths();

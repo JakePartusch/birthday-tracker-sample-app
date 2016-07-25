@@ -11,6 +11,20 @@
 
     vm.showAlert = false;
 
+    vm.dateOptions = {
+      dateDisabled: false
+    };
+
+    vm.format = 'dd-MM-yyyy';
+
+    vm.popup = {
+      opened: false
+    };
+
+    vm.open = function() {
+      vm.popup.opened = true;
+    };
+
     vm.submit = function() {
       birthdayTrackerService.addBirthday(vm.name, vm.birthdate);
       vm.clearForm();
