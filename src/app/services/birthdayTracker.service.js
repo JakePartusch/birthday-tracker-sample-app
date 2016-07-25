@@ -8,15 +8,21 @@
   /** @ngInject */
   function birthdayTrackerService() {
     var self = this;
-    self.months = initialState();
-    self.months = initializeTotalBirthdays();
 
-    var service = {
+    self.months = [];
+
+    init();
+
+    return {
       getMonths: getMonths,
       addBirthday: addBirthday
     };
 
-    return service;
+    function init() {
+      self.months = initialState();
+      self.months = initializeTotalBirthdays();
+      self.months = initialMonthOrder();
+    }
 
     /*
       Return the array of months.
@@ -39,6 +45,13 @@
       return self.months.map(function(month) {
         month.birthdays = 0;
         return month;
+      });
+    }
+
+    function initialMonthOrder() {
+      return self.months.map(function(month, i) {
+        month.order = i;
+        return month
       });
     }
 
@@ -69,5 +82,6 @@
         name: "December"
       }]
     }
+
   }
 })();

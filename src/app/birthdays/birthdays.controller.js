@@ -9,6 +9,7 @@
   function BirthdaysController(birthdayTrackerService) {
     var vm = this;
 
+    //Would prefer ES2015 'const' here, but sticking with ES5
     vm.birthdays = 'birthdays';
     vm.order = 'order';
 
@@ -26,6 +27,7 @@
 
     vm.setBirthdaySort = function() {
       vm.sortByProperty = vm.birthdays;
+      //Sort from high to low
       vm.reverse = true;
     };
 
