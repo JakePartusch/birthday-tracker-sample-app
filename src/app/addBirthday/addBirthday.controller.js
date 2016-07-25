@@ -9,19 +9,18 @@
   function AddBirthdayController(birthdayTrackerService, $timeout) {
     var vm = this;
 
-    vm.showAlert = false;
-
-    vm.dateOptions = {
-      dateDisabled: false
+    vm.init = function() {
+      vm.showAlert = false;
+      vm.dateOptions = {
+        dateDisabled: false
+      };
+      vm.format = 'dd-MM-yyyy';
+      vm.popup = {
+        opened: false
+      };
     };
 
-    vm.format = 'dd-MM-yyyy';
-
-    vm.popup = {
-      opened: false
-    };
-
-    vm.open = function() {
+    vm.openCalendar = function() {
       vm.popup.opened = true;
     };
 
@@ -36,11 +35,14 @@
       vm.birthdate = '';
     };
 
+    /* Show the alert for 2 seconds, then remove it*/
     vm.showBriefSuccessMessage = function() {
       vm.showAlert = true;
       $timeout(function () {
         vm.showAlert = false;
       }, 2000);
     };
+
+    vm.init();
   }
 })();

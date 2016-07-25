@@ -8,13 +8,12 @@
     Birthday successfully submitted!
   </div>
 
-  <div class="jumbotron text-center">
-    <h1>Birthday Tracker Application</h1>
-  </div>
-
   <form ng-submit="addBirthday.submit()">
     <div class="form-group col-md-4 col-md-offset-4">
       <label for="name">Name</label>
+      <!--
+        Required name field
+        -->
       <input type="text"
              class="form-control"
              id="name"
@@ -26,6 +25,11 @@
     <div class="form-group col-md-4 col-md-offset-4">
       <label for="birthdate">Birthdate</label>
       <p class="input-group">
+        <!--
+        Using the UI Bootstrap datepicker instead of native type="date" because
+        of the requirement to match the format dd-mm-yyyy. This is a required field
+        that uses a regex pattern match for validation.
+        -->
         <input
           id="birthdate"
           type="text"
@@ -39,7 +43,7 @@
           placeholder="dd-mm-yyyy"
           close-text="Close"/>
         <span class="input-group-btn">
-            <button type="button" class="btn btn-default" ng-click="addBirthday.open()"><i class="glyphicon glyphicon-calendar"></i></button>
+            <button type="button" class="btn btn-default" ng-click="addBirthday.openCalendar()"><i class="glyphicon glyphicon-calendar"></i></button>
           </span>
       </p>
     </div>

@@ -8,7 +8,8 @@
   /** @ngInject */
   function birthdayTrackerService() {
     var self = this;
-    self.birthdays = initialState();
+    self.months = initialState();
+    self.months = initializeTotalBirthdays();
 
     var service = {
       getMonths: getMonths,
@@ -17,54 +18,56 @@
 
     return service;
 
-    function initialState() {
-      return [{
-        name: "January",
-        birthdays: 0
-      }, {
-        name: "February",
-        birthdays: 0
-      }, {
-        name: "March",
-        birthdays: 0
-      }, {
-        name: "April",
-        birthdays: 0
-      }, {
-        name: "May",
-        birthdays: 0
-      }, {
-        name: "June",
-        birthdays: 0
-      }, {
-        name: "July",
-        birthdays: 0
-      }, {
-        name: "August",
-        birthdays: 0
-      }, {
-        name: "September",
-        birthdays: 0
-      }, {
-        name: "October",
-        birthdays: 0
-      }, {
-        name: "November",
-        birthdays: 0
-      }, {
-        name: "December",
-        birthdays: 0
-      }]
-    }
-
+    /*
+      Return the array of months.
+     */
     function getMonths() {
-      return self.birthdays;
+      return self.months;
     }
 
+    /*
+      Name is required on the form, but ignored here since
+      the requirements only pertain to the number of birthdays
+      in a given month.
+     */
     function addBirthday(name, date) {
-      var month = self.birthdays[date.getMonth()];
+      var month = self.months[date.getMonth()];
       month.birthdays++;
     }
 
+    function initializeTotalBirthdays() {
+      return self.months.map(function(month) {
+        month.birthdays = 0;
+        return month;
+      });
+    }
+
+    function initialState() {
+      return [{
+        name: "January"
+      }, {
+        name: "February"
+      }, {
+        name: "March"
+      }, {
+        name: "April"
+      }, {
+        name: "May"
+      }, {
+        name: "June"
+      }, {
+        name: "July"
+      }, {
+        name: "August"
+      }, {
+        name: "September"
+      }, {
+        name: "October"
+      }, {
+        name: "November"
+      }, {
+        name: "December"
+      }]
+    }
   }
 })();

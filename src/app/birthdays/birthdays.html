@@ -8,13 +8,17 @@
     <h1>Birthday Tracker Application</h1>
   </div>
   <div class="row">
+    <!--Using a button with toggling text since there are only two search
+        options-->
     <button class="btn btn-primary" ng-click="birthdays.toggleSort()">
       <div ng-if="!birthdays.isBirthdaySort()">Sort by Total Birthdays</div>
       <div ng-if="!birthdays.isChronologicalSort()">Sort Chronologically</div>
     </button>
   </div>
   <div class="row">
+    <!--Using built-in orderby filter to handle the sorting options-->
     <div class="col-sm-4 col-md-offset-4" ng-repeat="month in birthdays.months | orderBy: birthdays.sortByProperty:birthdays.reverse">
+      <!--Thumbnail for the rectangles-->
       <div class="thumbnail">
         <div class="caption">
           <h1 style="text-align: center">{{ month.name }}</h1>
